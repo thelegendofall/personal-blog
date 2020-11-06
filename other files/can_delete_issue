@@ -1,0 +1,134 @@
+<p id="image-upload-form">
+            <input type="hidden" name="form-TOTAL_FORMS" value="5" id="id_form-TOTAL_FORMS">
+            <input type="hidden" name="form-INITIAL_FORMS" value="4" id="id_form-INITIAL_FORMS">
+            <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
+            <input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS">
+</p>
+
+
+<a href="/media/post_images/2020/10/7/52">post_images/2020/10/7/52</a>
+<input type="checkbox" name="form-0-image-clear" id="form-0-image-clear_id">
+<input type="file" name="form-0-image" accept="image/*" id="id_form-0-image">
+<input type="checkbox" name="form-0-DELETE" id="id_form-0-DELETE">
+<input type="hidden" name="form-0-id" value="211" id="id_form-0-id">
+<input type="checkbox" name="form-0-DELETE" id="id_form-0-DELETE">
+
+<a href="/media/False">False</a>
+<input type="checkbox" name="form-1-image-clear" id="form-1-image-clear_id">
+<input type="file" name="form-1-image" accept="image/*" id="id_form-1-image">
+<input type="checkbox" name="form-1-DELETE" id="id_form-1-DELETE">
+<input type="hidden" name="form-1-id" value="212" id="id_form-1-id">
+<input type="checkbox" name="form-1-DELETE" id="id_form-1-DELETE">
+
+
+        <p id="image-upload-form">
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form.as_p }}
+                {% if formset.can_delete %}
+                    {{ form.DELETE }}
+                {% endif %}
+            {% endfor %}
+        </p>
+        
+        
+        
+def edit_post_view(request, pk):
+    post = Post.objects.get(pk=pk)
+    ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=1, can_delete=True)
+    if request.method == 'POST':
+        postform = PostForm(request.POST, instance=post)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.filter(post_id=pk))
+        if postform.is_valid() and formset.is_valid():
+            post_form = postform.save()
+            post_form.save()
+            for form in formset.cleaned_data:
+                Images(post=post_form, image=form['image']).save()
+            return HttpResponseRedirect("http://127.0.0.1:8000/myblog/blogindex/")
+        else:
+            print(postform.errors.as_data(), formset.errors.as_data())
+            return HttpResponseRedirect("http://127.0.0.1:8000/myblog/blogindex/")
+    else:
+        postform = PostForm(instance=post)
+        formset = ImageFormSet(queryset=Images.objects.filter(post_id=pk))
+    return render(request, 'edit_post_html.html', {'postform': postform, 'formset': formset})
+
+        
+    
+    
+    
+    
+     
+from django import forms
+
+
+class ArticleForm(forms.Form):
+    title = forms.CharField()
+    pub_date = forms.DateField()
+
+
+from django.forms import formset_factory
+ArticleFormSet = formset_factory(ArticleForm,can_delete=True)
+data = {
+   'form-TOTAL_FORMS': '1',
+   'form-INITIAL_FORMS': '0',
+   'form-MAX_NUM_FORMS': '',
+}    
+    
+formset = ArticleFormSet(data)
+ 
+print(ArticleFormSet.__dict__)
+... 
+	{'form': <class '__main__.ArticleForm'>, 
+	'extra': 1,
+	 'can_order': False, 
+	 'can_delete': True, 
+	 'min_num': 0, 
+	 'max_num': 1000, 
+	 'absolute_max': 2000, 
+	 'validate_min': False, 
+	 'validate_max': False, 
+	 '__module__': 'django.forms.formsets',
+	  '__doc__': None}
+
+
+print(formset.__dict__)
+... 
+	{'is_bound': True,
+	 'prefix': 'form', 
+	 'auto_id': 'id_%s', 
+	 'data': {'form-TOTAL_FORMS': '1', 'form-INITIAL_FORMS': '0', 'form-MAX_NUM_FORMS': ''}, 
+	 'files': {}, 
+	 'initial': None, 
+	 'form_kwargs': {},
+	  'error_class': <class 'django.forms.utils.ErrorList'>, 
+	  '_errors': [], 
+	  '_non_form_errors': []}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

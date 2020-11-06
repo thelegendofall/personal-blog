@@ -1,0 +1,71 @@
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+	manage.py
+	myblog/
+	theblog/
+
+nothing added to commit but untracked files present (use "git add" to track)
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git add --all
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git commit -m "my first blog app"
+[master (root-commit) 6d55ec6] my first blog app
+ 23 files changed, 606 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100755 manage.py
+ create mode 100644 myblog/__init__.py
+ create mode 100644 myblog/admin.py
+ create mode 100644 myblog/apps.py
+ create mode 100644 myblog/forms.py
+ create mode 100644 myblog/migrations/0001_initial.py
+ create mode 100644 myblog/migrations/__init__.py
+ create mode 100644 myblog/models.py
+ create mode 100644 myblog/templates/base.html
+ create mode 100644 myblog/templates/blog_category.html
+ create mode 100644 myblog/templates/blog_detail.html
+ create mode 100644 myblog/templates/blog_index.html
+ create mode 100644 myblog/templates/post_edit.html
+ create mode 100644 myblog/tests.py
+ create mode 100644 myblog/urls.py
+ create mode 100644 myblog/views.py
+ create mode 100644 theblog/__init__.py
+ create mode 100644 theblog/asgi.py
+ create mode 100644 theblog/settings.py
+ create mode 100644 theblog/templates/base.html
+ create mode 100644 theblog/urls.py
+ create mode 100644 theblog/wsgi.py
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git status
+On branch master
+nothing to commit, working tree clean
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ 
+
+
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git status
+On branch master
+nothing to commit, working tree clean
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git remote add origin https://github.com/thelegendofall/my-blog.git
+fatal: remote origin already exists.
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ git push -u origin master
+Username for 'https://github.com': thelegendofall
+Password for 'https://thelegendofall@github.com': 
+Counting objects: 27, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (25/25), done.
+Writing objects: 100% (27/27), 7.89 KiB | 1.32 MiB/s, done.
+Total 27 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/thelegendofall/my-blog.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+(base) sp@sp-zbook:~/Documents/Sriram-All-Personal-Files/blogproject/theblog$ 
+
+SECRET_KEY = '%%m2ic#rkivhmzsqkkfy*sxrobbstfx0o_^km6l-f*7xuer*n_'
+
+
+
+
